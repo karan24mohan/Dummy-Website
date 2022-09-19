@@ -39,6 +39,9 @@ a {
   justify-content: space-between;
   padding: 20px;
   background-color: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 99;
 }
 
 .navbar {
@@ -113,6 +116,35 @@ section {
   display: none;
 }
 
+.common-heading{
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.common-heading::before{
+  content: "";
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background-color: #8490ff;
+}
+
+.common-heading::after{
+  content: "";
+  position: absolute;
+  top: 127%;
+  left: 1.5rem;
+  background-color: #8490ff;
+  width: 15rem;
+  height: 0.3rem;
+}
+
 /* Reuseable Code Ends*/
 
 .section-hero {
@@ -174,6 +206,112 @@ section {
   color: #212529;
 }
 
+.section-bio-data{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bio-image{
+  width: 30%;
+  display: inline-block;
+  box-shadow: -1.5rem -1.5rem 0 0 var(--helper);
+}
+
+.bio-image img{
+  width: 100%;
+}
+
+.bio-data{
+  width: 60%;
+}
+
+.bio-data p{
+  margin-top: 3rem;
+}
+
+.bio-data-stats{
+  display: flex;
+  gap: 2rem;
+  padding: 2.5rem 0rem;
+  flex-direction: column;
+}
+
+.bio-progress-bar{
+  width: 90%;
+  height: 0.8rem;
+  position: relative;
+  border-radius: 10rem;
+  background: var(--para-tint);
+}
+
+.bio-progress-bar::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: inherit;
+  border-radius: 10rem;
+  background: var(--gradient);
+}
+
+.bio-progress-2::before{
+  width: 70%;
+}
+
+.bio-progress-3::before{
+  width: 60%;
+}
+
+.bio-progress-4::before{
+  width: 55%;
+}
+
+.bio-progress-5::before{
+  width: 70%;
+}
+
+.bio-progress-bar span{
+  position: absolute;
+  top: 1rem;
+  left: 76%;
+  width: 2rem;
+  height: 1.8rem;
+  margin-top: 0.5rem;
+  background: var(--gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bio-progress-2 span{
+  left: 66%;
+}
+
+.bio-progress-3 span{
+  left: 56%;
+}
+
+.bio-progress-4 span{
+  left: 51%;
+}
+
+.bio-progress-5 span{
+  left: 66%;
+}
+
+.bio-progress-bar span::after {
+  content: "";
+  position: absolute;
+  top: -1.6rem;
+  width: 0rem;
+  height: 0rem;
+  border: 0.8rem solid var(--helper);
+  border-color: transparent;
+  border-bottom-color: var(--helper);
+}
 @media screen and (max-width: 600px){
   .section{
     padding: unset;
@@ -187,11 +325,23 @@ section {
     width: 100%;
     margin-bottom: 2rem;
   }
-.section-hero-data {
+  .section-hero-data {
     align-items: center;
   }
   .hero-heading{
     font-size: 2.5rem;
+  }
+  .section-bio-data {
+    width: 100%;
+    padding: 2rem;
+    flex-direction: column;
+  }
+  .bio-image{
+    width: 90%;
+    margin-bottom: 2rem;
+  }
+  .bio-data{
+    width: 100%;
   }
 }
 
