@@ -58,6 +58,11 @@ counterNum.forEach((e) => {
   update();
 });
 
+// Scroll To top
+const Top = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 var swiper = new Swiper(".mySwiper", {
   slidesPerView: 2,
   spaceBetween: 30,
