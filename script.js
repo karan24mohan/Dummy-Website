@@ -42,13 +42,13 @@ const speed = 200;
 counterNum.forEach((e) => {
   const update = () => {
     const targetValue = parseInt(e.dataset.number);
-    console.log(targetValue);
+    // console.log(targetValue);
 
     const initialValue = parseInt(e.innerText);
-    console.log(initialValue);
+    // console.log(initialValue);
 
     const incrementCounter = Math.trunc(targetValue / speed);
-    console.log(incrementCounter);
+    // console.log(incrementCounter);
 
     if (initialValue < targetValue) {
       e.innerText = `${initialValue + incrementCounter}+`;
@@ -63,6 +63,25 @@ const Top = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
+// Automatic sticky navbar
+const heroSection = document.querySelector(".section-hero");
+const observer = new IntersectionObserver(
+  (entries) => {
+    const ent = entries[0];
+    // console.log(ent);
+    !ent.isIntersecting
+      ? document.body.classList.add("sticky")
+      : document.body.classList.remove("sticky");
+  },
+  {
+    root: null,
+    threshold: 0,
+  }
+);
+
+observer.observe(heroSection);
+
+// Swiper JS
 var swiper = new Swiper(".mySwiper", {
   slidesPerView: 2,
   spaceBetween: 30,
