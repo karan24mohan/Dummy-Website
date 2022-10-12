@@ -35,28 +35,28 @@ p_btns.addEventListener("click", (e) => {
 
 // Animate counter section
 
-const counterNum = document.querySelectorAll(".counter_num");
+// const counterNum = document.querySelectorAll(".counter_num");
 
-const speed = 200;
+// const speed = 200;
 
-counterNum.forEach((e) => {
-  const update = () => {
-    const targetValue = parseInt(e.dataset.number);
-    // console.log(targetValue);
+// counterNum.forEach((e) => {
+//   const update = () => {
+//     const targetValue = parseInt(e.dataset.number);
+//     // console.log(targetValue);
 
-    const initialValue = parseInt(e.innerText);
-    // console.log(initialValue);
+//     const initialValue = parseInt(e.innerText);
+//     // console.log(initialValue);
 
-    const incrementCounter = Math.trunc(targetValue / speed);
-    // console.log(incrementCounter);
+//     const incrementCounter = Math.trunc(targetValue / speed);
+//     // console.log(incrementCounter);
 
-    if (initialValue < targetValue) {
-      e.innerText = `${initialValue + incrementCounter}+`;
-      setTimeout(update, 10);
-    }
-  };
-  update();
-});
+//     if (initialValue < targetValue) {
+//       e.innerText = `${initialValue + incrementCounter}+`;
+//       setTimeout(update, 10);
+//     }
+//   };
+//   update();
+// });
 
 // Scroll To top
 const Top = () => {
@@ -81,15 +81,112 @@ const observer = new IntersectionObserver(
 
 observer.observe(heroSection);
 
+// Animation on numbers on scrollBehavior:
+const counterNumber = document.querySelector(".section-counter-number");
+const counterNumberObserver = new IntersectionObserver(
+  (entries, observe) => {
+    const entry = entries[0];
+    // console.log(entry);
+    if (entry.isIntersecting == false) return;
+
+    const counterNum = document.querySelectorAll(".counter_num");
+
+    const speed = 200;
+
+    counterNum.forEach((e) => {
+      const update = () => {
+        const targetValue = parseInt(e.dataset.number);
+        // console.log(targetValue);
+
+        const initialValue = parseInt(e.innerText);
+        // console.log(initialValue);
+
+        const incrementCounter = Math.trunc(targetValue / speed);
+        // console.log(incrementCounter);
+
+        if (initialValue < targetValue) {
+          e.innerText = `${initialValue + incrementCounter}+`;
+          setTimeout(update, 10);
+        }
+      };
+      update();
+    });
+    observer.unobserve(counterNumber);
+  },
+  {
+    root: null,
+    threshold: 0,
+  }
+);
+
+counterNumberObserver.observe(counterNumber);
+
 // Swiper JS
-var swiper = new Swiper(".mySwiper", {
-  slidesPerView: 2,
-  spaceBetween: 30,
-  autoplay: {
-    delay: 2000,
-  },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-});
+// new Swiper(".mySwiper", {
+//   slidesPerView: 2,
+//   spaceBetween: 30,
+//   autoplay: {
+//     delay: 2000,
+//   },
+//   pagination: {
+//     el: ".swiper-pagination",
+//     clickable: true,
+//   },
+// });
+
+// function myJsmedia(widthSize) {
+//   if (widthSize.matches) {
+//     new Swiper(".mySwiper", {
+//       slidesPerView: 1,
+//       spaceBetween: 0,
+//     });
+//   } else {
+//     new Swiper(".mySwiper", {
+//       slidesPerView: 2,
+//       spaceBetween: 30,
+//     });
+//   }
+// }
+
+// media query for Swiper JS
+// const widthSize = window.matchMedia("(max-width: 600px)");
+// myJsmedia(widthSize);
+// widthSize.addEventListener("change", myJsmedia);
+
+function myFunction(widthSize) {
+  if (widthSize.matches) {
+    // If media query matches
+    const swiper = new Swiper(".swiper", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  } else {
+    const swiper = new Swiper(".swiper", {
+      slidesPerView: 2,
+      spaceBetween: 30,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  }
+}
+
+const widthSize = window.matchMedia("(max-width: 780px)");
+// Call listener function at run time
+myFunction(widthSize);
+// Attach listener function on state changes
+widthSize.addEventListener("change", myFunction);
